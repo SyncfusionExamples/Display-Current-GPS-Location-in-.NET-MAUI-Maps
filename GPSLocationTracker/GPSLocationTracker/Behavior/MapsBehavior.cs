@@ -6,7 +6,7 @@
     public class MapsBehavior : Behavior<ContentPage>
     {
         private MapTileLayer? tileLayer;
-        private SfButton? markerButton;
+        private SfButton? locationButton;
         private SfButton? zoomInButton;
         private SfButton? zoomOutButton;
 
@@ -16,15 +16,15 @@
             this.tileLayer = bindable.FindByName<MapTileLayer>("tileLayer");
             this.tileLayer.Center = new MapLatLng(37.3427441, -121.9757752);
 
-            this.markerButton = bindable.FindByName<SfButton>("LocationButton");
-            this.markerButton.Clicked += MarkerButton_Clicked;
+            this.locationButton = bindable.FindByName<SfButton>("LocationButton");
+            this.locationButton.Clicked += LocationButton_Clicked;
             this.zoomInButton = bindable.FindByName<SfButton>("ZoomInButton");
             this.zoomInButton.Clicked += ZoomInButton_Clicked;
             this.zoomOutButton = bindable.FindByName<SfButton>("ZoomOutButton");
             this.zoomOutButton.Clicked += ZoomOutButton_Clicked;
         }
 
-        private async void MarkerButton_Clicked(object? sender, EventArgs e)
+        private async void LocationButton_Clicked(object? sender, EventArgs e)
         {
             var status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
 
@@ -77,13 +77,13 @@
             if (this.tileLayer != null)
                 this.tileLayer = null;
 
-            if (this.markerButton != null && this.zoomInButton != null && this.zoomOutButton != null)
+            if (this.locationButton != null && this.zoomInButton != null && this.zoomOutButton != null)
             {
-                this.markerButton.Clicked -= MarkerButton_Clicked;
+                this.locationButton.Clicked -= LocationButton_Clicked;
                 this.zoomInButton.Clicked -= ZoomInButton_Clicked;
                 this.zoomOutButton.Clicked -= ZoomOutButton_Clicked;
 
-                this.markerButton = null;
+                this.locationButton = null;
                 this.zoomInButton = null;
                 this.zoomOutButton = null;
             }

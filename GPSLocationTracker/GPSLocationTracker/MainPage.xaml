@@ -13,7 +13,7 @@
     <Grid>
         <map:SfMaps>
             <map:SfMaps.Layer>
-                <map:MapTileLayer x:Name="tileLayer"
+                <map:MapTileLayer x:Name="tileLayer" CanCacheTiles="True"
                                   UrlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png">
                     <map:MapTileLayer.MarkerTemplate>
                         <DataTemplate>
